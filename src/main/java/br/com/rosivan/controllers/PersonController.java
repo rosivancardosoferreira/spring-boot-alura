@@ -12,18 +12,15 @@ import java.util.List;
 public class PersonController {
     @Autowired
     private PersonServices service;
-    // private PersonServices service = new PersonServices();
 
-    @RequestMapping(
-        method = RequestMethod.GET,
+    @GetMapping(
         produces = MediaType.APPLICATION_JSON_VALUE
     )
     public List<Person> findAll() {
         return service.findAll();
     }
 
-    @RequestMapping(value = "/{id}",
-        method = RequestMethod.GET,
+    @GetMapping(value = "/{id}",
         produces = MediaType.APPLICATION_JSON_VALUE)
     public Person findById(
             @PathVariable(value = "id") Long id
@@ -31,8 +28,7 @@ public class PersonController {
         return service.findById(id);
     }
 
-    @RequestMapping(
-        method = RequestMethod.POST,
+    @PostMapping(
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public Person create(
@@ -40,8 +36,7 @@ public class PersonController {
             ) {
         return service.create (person);
     }
-    @RequestMapping(
-        method = RequestMethod.PUT,
+    @PutMapping(
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE)
     public Person update(
@@ -50,11 +45,9 @@ public class PersonController {
         return service.update (person);
     }
 
-    @RequestMapping(
-            value = "/{id}",
-            method = RequestMethod.DELETE)
+    @DeleteMapping(
+            value = "/{id}")
     public void delete(@PathVariable(value = "id") Long id) {
         service.delete(id);
     }
-
 }
