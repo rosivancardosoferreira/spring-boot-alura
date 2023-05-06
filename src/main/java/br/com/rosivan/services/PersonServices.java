@@ -51,16 +51,4 @@ public class PersonServices {
         );
         repository.delete(entity);
     }
-
-    /*  private Person mockPerson(int i) {
-        Person person = new Person();
-        person.setId(counter.incrementAndGet());
-        person.setFirstName("Person name: " + i);
-        person.setLastName("Last Name: " + i);
-        person.setAddress("Same Address: " + i);
-        person.setGender("Male");
-
-        return person;
-    } */
-
 }

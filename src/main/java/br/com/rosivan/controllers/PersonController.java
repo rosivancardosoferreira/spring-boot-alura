@@ -3,6 +3,7 @@ import br.com.rosivan.model.Person;
 import br.com.rosivan.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -45,9 +46,9 @@ public class PersonController {
         return service.update (person);
     }
 
-    @DeleteMapping(
-            value = "/{id}")
-    public void delete(@PathVariable(value = "id") Long id) {
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
         service.delete(id);
+        return ResponseEntity.noContent().build(); // status 404
     }
 }
