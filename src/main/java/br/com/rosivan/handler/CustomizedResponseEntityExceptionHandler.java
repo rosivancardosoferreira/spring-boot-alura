@@ -1,7 +1,7 @@
 package br.com.rosivan.handler;
 
 import br.com.rosivan.exceptions.ExceptionResponse;
-import br.com.rosivan.exceptions.UnsupportedMathOperationException;
+import br.com.rosivan.exceptions.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -27,15 +27,15 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     }
 
 
-    @ExceptionHandler(UnsupportedMathOperationException.class) // BAD REQUEST
-    public final ResponseEntity <ExceptionResponse> handleBadRequestExceptions(
+    @ExceptionHandler(ResourceNotFoundException.class) // BAD REQUEST
+    public final ResponseEntity <ExceptionResponse> handleNotFoundExceptions(
             Exception ex, WebRequest request) {
         ExceptionResponse exceptionResponse = new ExceptionResponse(
                 new Date(),
                 ex.getMessage(),
                 request.getDescription(false)
         );
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
 
