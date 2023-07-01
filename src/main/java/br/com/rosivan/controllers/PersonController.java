@@ -2,8 +2,8 @@ package br.com.rosivan.controllers;
 import br.com.rosivan.data.vo.v1.PersonVO;
 import br.com.rosivan.data.vo.v2.PersonVOV2;
 import br.com.rosivan.services.PersonServices;
+import br.com.rosivan.util.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,14 +16,14 @@ public class PersonController {
     private PersonServices service;
 
     @GetMapping(
-        produces = MediaType.APPLICATION_JSON_VALUE
+        produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML }
     )
     public List<PersonVO> findAll() {
         return service.findAll();
     }
 
     @GetMapping(value = "/{id}",
-        produces = MediaType.APPLICATION_JSON_VALUE)
+        produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public PersonVO findById(
             @PathVariable(value = "id") Long id
             ) {
@@ -31,8 +31,8 @@ public class PersonController {
     }
 
     @PostMapping(
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+        consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML },
+        produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public PersonVO create(
             @RequestBody PersonVO person
             ) {
@@ -41,16 +41,16 @@ public class PersonController {
 
     @PostMapping(
             value = "/v2",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_VALUE)
+            consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML },
+            produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public PersonVOV2 createV2(
             @RequestBody PersonVOV2 person
     ) {
         return service.createV2(person);
     }
     @PutMapping(
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+        consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML },
+        produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
     public PersonVO update(
             @RequestBody PersonVO person
             ) {
