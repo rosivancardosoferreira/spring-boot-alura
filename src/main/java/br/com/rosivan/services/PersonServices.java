@@ -3,6 +3,7 @@ package br.com.rosivan.services;
 import br.com.rosivan.controllers.PersonController;
 import br.com.rosivan.data.vo.v1.PersonVO;
 import br.com.rosivan.data.vo.v2.PersonVOV2;
+import br.com.rosivan.exceptions.RequiredObjectIsNullException;
 import br.com.rosivan.exceptions.ResourceNotFoundException;
 import br.com.rosivan.mapper.DozerMapper;
 import br.com.rosivan.mapper.custom.PersonMapper;
@@ -50,6 +51,9 @@ public class PersonServices {
     }
 
     public PersonVO create(PersonVO person) {
+        if(person == null) {
+            throw new RequiredObjectIsNullException();
+        }
         logger.info("Creating one person!");
         var entity = DozerMapper.parseObject(person, Person.class);
         var vo = DozerMapper.parseObject(repository.save(entity), PersonVO.class);
