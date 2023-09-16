@@ -63,6 +63,7 @@ public class PersonController {
     public PersonVO findById(@PathVariable(value = "id") Long id) {
         return service.findById(id);
     }
+
     @PostMapping(
         consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML },
         produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -82,15 +83,6 @@ public class PersonController {
         return service.create(person);
     }
 
-    @PostMapping(
-            value = "/v2",
-            consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML },
-            produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-    public PersonVOV2 createV2(
-            @RequestBody PersonVOV2 person
-    ) {
-        return service.createV2(person);
-    }
     @PutMapping(
         consumes = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML },
         produces = { MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
